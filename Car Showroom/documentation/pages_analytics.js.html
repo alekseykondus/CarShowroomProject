@@ -1,4 +1,32 @@
-function CreateElement(nameElement, idElement, innerText, parentId) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/analytics.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/analytics.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>function CreateElement(nameElement, idElement, innerText, parentId) {
      let element = document.createElement(nameElement);
      element.id = idElement;
      element.innerText = innerText;
@@ -18,7 +46,7 @@ function CreateElement(nameElement, idElement, innerText, parentId) {
  */
 function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
 
-     if (startDate == 0 && endDate == 0 && notOnLoad == 0) { //при загрузке страницы
+     if (startDate == 0 &amp;&amp; endDate == 0 &amp;&amp; notOnLoad == 0) { //при загрузке страницы
           CreateElement("h2", "h2-employees", "Таблиця статистики працівників", "main-products-container").classList.add("text-center");
           CreateElement("table", "employees-table", "", "main-products-container").classList.add("table", "table-striped", "table-hover");
           CreateElement("thead", "thead", "", "employees-table")
@@ -42,7 +70,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(res2 => res2.text())
                          .then(res2 => {
                               let employeeStatisticsTable = JSON.parse(res2);
-                              for (let i = 0; i < employeeStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; employeeStatisticsTable.length; i++) {
                                    CreateElement("tr", "tr" + i + "-body", "", "tbody")
                                    CreateElement("td", "tr" + employeeStatisticsTable[i]['employeeId'] + "-td1", employeeStatisticsTable[i]['employeeId'], "tr" + i + "-body").classList.add("text-center");
                                    CreateElement("td", "tr" + employeeStatisticsTable[i]['employeeId'] + "-td2", employees[i]['fullName'], "tr" + i + "-body")
@@ -60,7 +88,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                .then(res1 => res1.text())
                .then(res1 => {
                     let employees = JSON.parse(res1);
-                    for (let i = 0; i < employees.length; i++) {
+                    for (let i = 0; i &lt; employees.length; i++) {
                          if (document.getElementById("tr" + employees[i]['employeeId'] + "-td3"))
                               document.getElementById("tr" + employees[i]['employeeId'] + "-td3").innerText = 0;
                          if (document.getElementById("tr" + employees[i]['employeeId'] + "-td4"))
@@ -77,7 +105,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(res2 => res2.text())
                          .then(res2 => {
                               let employeeStatisticsTable = JSON.parse(res2);
-                              for (let i = 0; i < employeeStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; employeeStatisticsTable.length; i++) {
                                    document.getElementById("tr" + employeeStatisticsTable[i]['employeeId'] + "-td3").innerText = employeeStatisticsTable[i]['numberOfSales'];
                                    document.getElementById("tr" + employeeStatisticsTable[i]['employeeId'] + "-td4").innerText = parseInt(employeeStatisticsTable[i]['salesAmount']).toLocaleString();
                               }
@@ -91,7 +119,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                .then(res1 => res1.text())
                .then(res1 => {
                     let employees = JSON.parse(res1);
-                    for (let i = 0; i < employees.length; i++) {
+                    for (let i = 0; i &lt; employees.length; i++) {
                          document.getElementById("tr" + employees[i]['employeeId'] + "-td3").innerText = 0;
                          document.getElementById("tr" + employees[i]['employeeId'] + "-td4").innerText = 0;
                     }
@@ -102,7 +130,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(res2 => res2.text())
                          .then(res2 => {
                               let employeeStatisticsTable = JSON.parse(res2);
-                              for (let i = 0; i < employees.length; i++) {
+                              for (let i = 0; i &lt; employees.length; i++) {
                                    document.getElementById("tr" + employeeStatisticsTable[i]['employeeId'] + "-td3").innerText = employeeStatisticsTable[i]['numberOfSales'];
                                    document.getElementById("tr" + employeeStatisticsTable[i]['employeeId'] + "-td4").innerText = employeeStatisticsTable[i]['salesAmount'].toLocaleString();
                               }
@@ -119,7 +147,7 @@ function FillInEmployeesTable(startDate = 0, endDate = 0, notOnLoad = 0) {
  * @param {boolean} notOnLoad - Indicates whether the function is called during the initial page load or not.
  */
 function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
-     if (startDate == 0 && endDate == 0 && notOnLoad == 0) { //при загрузке страницы
+     if (startDate == 0 &amp;&amp; endDate == 0 &amp;&amp; notOnLoad == 0) { //при загрузке страницы
           CreateElement("h2", "h2-cars-statistics", "Таблиця статистики машин", "main-products-container").classList.add("text-center");
           CreateElement("table", "cars-statistics-table", "", "main-products-container").classList.add("table", "table-striped", "table-hover");
           CreateElement("thead", "cars-statistics-thead", "", "cars-statistics-table")
@@ -144,7 +172,7 @@ function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let carsStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < carsStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; carsStatisticsTable.length; i++) {
                                    CreateElement("tr", "cars-statistics-tr" + i + "-body", "", "cars-statistics-tbody")
                                    CreateElement("td", "cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td1", carsStatisticsTable[i]['carId'], "cars-statistics-tr" + i + "-body").classList.add("text-center");
                                    CreateElement("td", "cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td2", carsTable[carsStatisticsTable[i]['carId'] - 1]['name'], "cars-statistics-tr" + i + "-body")
@@ -163,7 +191,7 @@ function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                .then(result1 => result1.text())
                .then(result1 => {
                     let carsTable = JSON.parse(result1);
-                    for (let i = 0; i < carsTable.length; i++) {
+                    for (let i = 0; i &lt; carsTable.length; i++) {
                          if (document.getElementById("cars-statistics-tr" + carsTable[i]['carId'] + "-td3"))
                               document.getElementById("cars-statistics-tr" + carsTable[i]['carId'] + "-td3").innerText = 0;
                          if (document.getElementById("cars-statistics-tr" + carsTable[i]['carId'] + "-td4"))
@@ -180,7 +208,7 @@ function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let carsStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < carsStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; carsStatisticsTable.length; i++) {
                                    document.getElementById("cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td3").innerText = carsStatisticsTable[i]['numberOfSales'];
                                    document.getElementById("cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td4").innerText = (carsStatisticsTable[i]['numberOfSales'] * carsTable[carsStatisticsTable[i]['carId'] - 1]['price']).toLocaleString();
                               }
@@ -200,7 +228,7 @@ function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let carsStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < carsStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; carsStatisticsTable.length; i++) {
                                    document.getElementById("cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td3").innerText = carsStatisticsTable[i]['numberOfSales'];
                                    document.getElementById("cars-statistics-tr" + carsStatisticsTable[i]['carId'] + "-td4").innerText = (carsStatisticsTable[i]['numberOfSales'] * carsTable[carsStatisticsTable[i]['carId'] - 1]['price']).toLocaleString();
                               }
@@ -217,7 +245,7 @@ function FillInCarsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
  * @param {boolean} notOnLoad - Indicates whether the function is called during the initial page load or not.
  */
 function FillInClientsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0) {
-     if (startDate == 0 && endDate == 0 && notOnLoad == 0) { //при загрузке страницы
+     if (startDate == 0 &amp;&amp; endDate == 0 &amp;&amp; notOnLoad == 0) { //при загрузке страницы
           CreateElement("h2", "h2-clients", "Таблиця статистики клієнтів", "main-products-container").classList.add("text-center");
           CreateElement("table", "clients-table", "", "main-products-container").classList.add("table", "table-striped", "table-hover");
           CreateElement("thead", "clients-thead", "", "clients-table")
@@ -240,7 +268,7 @@ function FillInClientsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0)
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let clientStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < clientStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; clientStatisticsTable.length; i++) {
                                    CreateElement("tr", "clients-tr" + i + "-body", "", "clients-tbody")
                                    CreateElement("td", "clients-tr" + clientStatisticsTable[i]['clientId'] + "-td1", clients[i]['clientId'], "clients-tr" + i + "-body").classList.add("text-center");
                                    CreateElement("td", "clients-tr" + clientStatisticsTable[i]['clientId'] + "-td2", clients[i]['surname'] + ' ' + clients[i]['name'] + ' ' + clients[i]['patronymic'], "clients-tr" + i + "-body")
@@ -257,7 +285,7 @@ function FillInClientsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0)
                .then(result1 => result1.text())
                .then(result1 => {
                     let clients = JSON.parse(result1);
-                    for (let i = 0; i < clients.length; i++) {
+                    for (let i = 0; i &lt; clients.length; i++) {
                          if (document.getElementById("clients-tr" + clients[i]['clientId'] + "-td3"))
                               document.getElementById("clients-tr" + clients[i]['clientId'] + "-td3").innerText = 0;
                          if (document.getElementById("clients-tr" + clients[i]['clientId'] + "-td4"))
@@ -274,7 +302,7 @@ function FillInClientsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0)
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let clientStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < clientStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; clientStatisticsTable.length; i++) {
                                    document.getElementById("clients-tr" + clientStatisticsTable[i]['clientId'] + "-td3").innerText = clientStatisticsTable[i]['numberOfOrders'];
                                    document.getElementById("clients-tr" + clientStatisticsTable[i]['clientId'] + "-td4").innerText = parseInt(clientStatisticsTable[i]['ordersAmount']).toLocaleString();
                               }
@@ -294,7 +322,7 @@ function FillInClientsStatisticsTable(startDate = 0, endDate = 0, notOnLoad = 0)
                          .then(result2 => result2.text())
                          .then(result2 => {
                               let clientStatisticsTable = JSON.parse(result2);
-                              for (let i = 0; i < clientStatisticsTable.length; i++) {
+                              for (let i = 0; i &lt; clientStatisticsTable.length; i++) {
                                    document.getElementById("clients-tr" + clientStatisticsTable[i]['clientId'] + "-td3").innerText = clientStatisticsTable[i]['numberOfOrders'];
                                    document.getElementById("clients-tr" + clientStatisticsTable[i]['clientId'] + "-td4").innerText = parseInt(clientStatisticsTable[i]['ordersAmount']).toLocaleString();
                               }
@@ -389,4 +417,26 @@ function PeriodChanged() {
      }
 }
 
-PeriodChanged();
+PeriodChanged();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddNewOrderAdditionalToDB">AddNewOrderAdditionalToDB</a></li><li><a href="global.html#AddNewOrderToDB">AddNewOrderToDB</a></li><li><a href="global.html#AddNew%25D0%25A1lientToDB">AddNewСlientToDB</a></li><li><a href="global.html#CloseConnectionToDB">CloseConnectionToDB</a></li><li><a href="global.html#ConnectToDB">ConnectToDB</a></li><li><a href="global.html#CreateElement">CreateElement</a></li><li><a href="global.html#FillInCarsStatisticsTable">FillInCarsStatisticsTable</a></li><li><a href="global.html#FillInClientsStatisticsTable">FillInClientsStatisticsTable</a></li><li><a href="global.html#FillInEmployeesTable">FillInEmployeesTable</a></li><li><a href="global.html#FillInTables">FillInTables</a></li><li><a href="global.html#FillInTheTable">FillInTheTable</a></li><li><a href="global.html#OnChangeDates">OnChangeDates</a></li><li><a href="global.html#PeriodChanged">PeriodChanged</a></li><li><a href="global.html#addCar">addCar</a></li><li><a href="global.html#addOptions">addOptions</a></li><li><a href="global.html#buttonCheckoutCloseOnClick">buttonCheckoutCloseOnClick</a></li><li><a href="global.html#buttonCheckoutOnClick">buttonCheckoutOnClick</a></li><li><a href="global.html#buttonCheckoutSubmitOnClickAndWriteOrderToDB">buttonCheckoutSubmitOnClickAndWriteOrderToDB</a></li><li><a href="global.html#calculateThePrice">calculateThePrice</a></li><li><a href="global.html#cartIsEmpty">cartIsEmpty</a></li><li><a href="global.html#changeRenderCart">changeRenderCart</a></li><li><a href="global.html#changeTotalPrice">changeTotalPrice</a></li><li><a href="global.html#clearData">clearData</a></li><li><a href="global.html#deleteFunction">deleteFunction</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getEmployeeIdFromDB">getEmployeeIdFromDB</a></li><li><a href="global.html#get%25D0%25A1lientIdFromDB">getСlientIdFromDB</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#minusFunction">minusFunction</a></li><li><a href="global.html#plusFunction">plusFunction</a></li><li><a href="global.html#renderCart">renderCart</a></li><li><a href="global.html#saveData">saveData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 11:35:54 GMT+0200 (Восточная Европа, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

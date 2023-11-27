@@ -21,7 +21,9 @@ CreateElement("td", "tr1-td3", "3 600 000", "tr1")
 
 //console.log(Result)
 
-
+/**
+ * Fetches car data from the server and populates the cars table in the HTML.
+ */
 function FillInTheTable() {
      console.log("Server Request start");
 

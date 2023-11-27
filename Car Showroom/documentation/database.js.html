@@ -1,4 +1,32 @@
-const path = require('path');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: database.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: database.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const path = require('path');
 const express = require('express');
 const app = express();
 app.use(express.static(path.join(__dirname, 'pages')))
@@ -128,13 +156,13 @@ async function AddNewСlientToDB(receivedFromForm) {
  */
 function formatDate(date) {
      var dd = date.getDate();
-     if (dd < 10) dd = '0' + dd;
+     if (dd &lt; 10) dd = '0' + dd;
 
      var mm = date.getMonth() + 1;
-     if (mm < 10) mm = '0' + mm;
+     if (mm &lt; 10) mm = '0' + mm;
 
      var yy = date.getFullYear();
-     if (yy < 10) yy = '0' + yy;
+     if (yy &lt; 10) yy = '0' + yy;
 
      return yy + '-' + mm + '-' + dd;
 }
@@ -252,7 +280,7 @@ app.post('/getEmployeeStatisticsForThePeriodFromDB', (request, response) => {
           //console.log(body);
           let receivedFromServer = JSON.parse(body);
 
-          let query = "SELECT employeeId, COUNT(orderid) as numberOfSales, SUM(transactionAmount) as salesAmount FROM orders WHERE orderDate >= '" + receivedFromServer.startDate + "' AND orderDate <= '" + receivedFromServer.endDate + "'" + "GROUP BY employeeid";
+          let query = "SELECT employeeId, COUNT(orderid) as numberOfSales, SUM(transactionAmount) as salesAmount FROM orders WHERE orderDate >= '" + receivedFromServer.startDate + "' AND orderDate &lt;= '" + receivedFromServer.endDate + "'" + "GROUP BY employeeid";
           const connection = await mysql2.createConnection(config);
           const [rows, fields] = await connection.execute(query);
           //console.log(rows);
@@ -279,7 +307,7 @@ app.post('/getCarsStatisticsForThePeriodFromDB', (request, response) => {
      });
      request.on('end', async () => {
           let receivedFromServer = JSON.parse(body);
-          let query = "SELECT ordersadditional.carId, count(ordersadditional.carId) as numberOfSales FROM ordersadditional JOIN orders ON ordersadditional.orderId = orders.orderId WHERE orders.orderDate >= '" + receivedFromServer.startDate + "' AND orders.orderDate <= '" + receivedFromServer.endDate + "' GROUP BY carId; ";
+          let query = "SELECT ordersadditional.carId, count(ordersadditional.carId) as numberOfSales FROM ordersadditional JOIN orders ON ordersadditional.orderId = orders.orderId WHERE orders.orderDate >= '" + receivedFromServer.startDate + "' AND orders.orderDate &lt;= '" + receivedFromServer.endDate + "' GROUP BY carId; ";
           const connection = await mysql2.createConnection(config);
           const [rows, fields] = await connection.execute(query);
           //console.log(rows);
@@ -315,7 +343,7 @@ app.post('/getClientStatisticsForThePeriodFromDB', (request, response) => {
      });
      request.on('end', async () => {
           let receivedFromServer = JSON.parse(body);
-          let query = "SELECT clientId, COUNT(clientId) as numberOfOrders, SUM(transactionAmount) as ordersAmount FROM orders WHERE orders.orderDate >= '" + receivedFromServer.startDate + "' AND orders.orderDate <= '" + receivedFromServer.endDate + "' GROUP BY clientId; ";
+          let query = "SELECT clientId, COUNT(clientId) as numberOfOrders, SUM(transactionAmount) as ordersAmount FROM orders WHERE orders.orderDate >= '" + receivedFromServer.startDate + "' AND orders.orderDate &lt;= '" + receivedFromServer.endDate + "' GROUP BY clientId; ";
           const connection = await mysql2.createConnection(config);
           const [rows, fields] = await connection.execute(query);
           //console.log(rows);
@@ -387,10 +415,33 @@ app.post('/getSumOfAllOrdersForThePeriodFromDB', async (request, response) => {
           //console.log(body);
           let receivedFromServer = JSON.parse(body);
 
-          let query = "SELECT SUM(transactionAmount) FROM orders WHERE orderDate >= '" + receivedFromServer.startDate + "' AND orderDate <= '" + receivedFromServer.endDate + "'";
+          let query = "SELECT SUM(transactionAmount) FROM orders WHERE orderDate >= '" + receivedFromServer.startDate + "' AND orderDate &lt;= '" + receivedFromServer.endDate + "'";
           const connection = await mysql2.createConnection(config);
           const [rows, fields] = await connection.execute(query);
           response.send(rows[0]['SUM(transactionAmount)']);
           connection.end();
      });
 });
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddNewOrderAdditionalToDB">AddNewOrderAdditionalToDB</a></li><li><a href="global.html#AddNewOrderToDB">AddNewOrderToDB</a></li><li><a href="global.html#AddNew%25D0%25A1lientToDB">AddNewСlientToDB</a></li><li><a href="global.html#CloseConnectionToDB">CloseConnectionToDB</a></li><li><a href="global.html#ConnectToDB">ConnectToDB</a></li><li><a href="global.html#CreateElement">CreateElement</a></li><li><a href="global.html#FillInCarsStatisticsTable">FillInCarsStatisticsTable</a></li><li><a href="global.html#FillInClientsStatisticsTable">FillInClientsStatisticsTable</a></li><li><a href="global.html#FillInEmployeesTable">FillInEmployeesTable</a></li><li><a href="global.html#FillInTables">FillInTables</a></li><li><a href="global.html#FillInTheTable">FillInTheTable</a></li><li><a href="global.html#OnChangeDates">OnChangeDates</a></li><li><a href="global.html#PeriodChanged">PeriodChanged</a></li><li><a href="global.html#addCar">addCar</a></li><li><a href="global.html#addOptions">addOptions</a></li><li><a href="global.html#buttonCheckoutCloseOnClick">buttonCheckoutCloseOnClick</a></li><li><a href="global.html#buttonCheckoutOnClick">buttonCheckoutOnClick</a></li><li><a href="global.html#buttonCheckoutSubmitOnClickAndWriteOrderToDB">buttonCheckoutSubmitOnClickAndWriteOrderToDB</a></li><li><a href="global.html#calculateThePrice">calculateThePrice</a></li><li><a href="global.html#cartIsEmpty">cartIsEmpty</a></li><li><a href="global.html#changeRenderCart">changeRenderCart</a></li><li><a href="global.html#changeTotalPrice">changeTotalPrice</a></li><li><a href="global.html#clearData">clearData</a></li><li><a href="global.html#deleteFunction">deleteFunction</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getEmployeeIdFromDB">getEmployeeIdFromDB</a></li><li><a href="global.html#get%25D0%25A1lientIdFromDB">getСlientIdFromDB</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#minusFunction">minusFunction</a></li><li><a href="global.html#plusFunction">plusFunction</a></li><li><a href="global.html#renderCart">renderCart</a></li><li><a href="global.html#saveData">saveData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 11:35:54 GMT+0200 (Восточная Европа, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

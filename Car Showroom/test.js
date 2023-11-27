@@ -67,6 +67,30 @@ describe('/GET', function () {
               done();
             });
   });
+  it('ClientStatisticsFromDB', (done) => {
+    chai.request(export_data.app)
+            .get('/getClientStatisticsFromDB')
+            .end((err, res) => {
+                res.should.have.status(200);
+              done();
+            });
+  });
+  it('CarsStatisticsFromDB', (done) => {
+    chai.request(export_data.app)
+            .get('/getCarsStatisticsFromDB')
+            .end((err, res) => {
+                res.should.have.status(200);
+              done();
+            });
+  });
+  it('EmployeeStatisticsFromDB', (done) => {
+    chai.request(export_data.app)
+            .get('/getEmployeeStatisticsFromDB')
+            .end((err, res) => {
+                res.should.have.status(200);
+              done();
+            });
+  });
 });
 
 describe('/POST', function () {
@@ -91,6 +115,66 @@ describe('/POST', function () {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Order successfully added!');
+          done();
+        });
+  });
+  it('SumOfAllOrdersForThePeriodFromDB', (done) => {
+    let dates = {
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-30",
+    }
+    chai.request(export_data.app)
+        .post('/getSumOfAllOrdersForThePeriodFromDB')
+        .send(dates)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+
+          done();
+        });
+  });
+  it('ClientStatisticsForThePeriodFromDB', (done) => {
+    let dates = {
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-30",
+    }
+    chai.request(export_data.app)
+        .post('/getClientStatisticsForThePeriodFromDB')
+        .send(dates)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+
+          done();
+        });
+  });
+  it('CarsStatisticsForThePeriodFromDB', (done) => {
+    let dates = {
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-30",
+    }
+    chai.request(export_data.app)
+        .post('/getCarsStatisticsForThePeriodFromDB')
+        .send(dates)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+
+          done();
+        });
+  });
+  it('EmployeeStatisticsForThePeriodFromDB', (done) => {
+    let dates = {
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-30",
+    }
+    chai.request(export_data.app)
+        .post('/getEmployeeStatisticsForThePeriodFromDB')
+        .send(dates)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+
           done();
         });
   });

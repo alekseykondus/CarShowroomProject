@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/fillInTheTable.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/fillInTheTable.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>function CreateElement(nameElement, idElement, innerText, parentId) {
+     let element = document.createElement(nameElement);
+     element.id = idElement;
+     element.innerText = innerText;
+     if (parentId == "body")
+          document.body.appendChild(element);
+     else
+          document.getElementById(parentId).appendChild(element);
+     return element;
+}
+
+let table = document.getElementById("cars-table");
+
+/*
+CreateElement("tbody", "tbody", "", "cars-table")
+CreateElement("tr", "tr1", "", "tbody")
+CreateElement("td", "tr1-td1", "1", "tr1")
+CreateElement("td", "tr1-td2", "LAMBORGHINI SIAN", "tr1")
+CreateElement("td", "tr1-td3", "3 600 000", "tr1")
+*/
+
+//console.log(Result)
+
+/**
+ * Fetches car data from the server and populates the cars table in the HTML.
+ */
+function FillInTheTable() {
+     console.log("Server Request start");
+
+     CreateElement("tbody", "tbody", "", "cars-table")
+     fetch('/getCarsFromDB', {
+          method: 'GET',
+     })
+          .then(res => res.text())
+          .then(res => {
+               let carsTable = JSON.parse(res);
+               for (let i = 0; i &lt; carsTable.length; i++) {
+                    CreateElement("tr", "tr" + i, "", "tbody")
+                    CreateElement("td", "tr" + i + "-td1", carsTable[i]['carId'], "tr" + i)
+                    CreateElement("td", "tr" + i + "-td2", carsTable[i]['name'], "tr" + i)
+                    CreateElement("td", "tr" + i + "-td3", carsTable[i]['price'].toLocaleString(), "tr" + i)
+               }
+          });
+
+     /*
+          let xhr = new XMLHttpRequest();
+          xhr.open('POST', 'hi', true);
+          xhr.onreadystatechange = function () {
+               if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                         console.log("success");
+                    }
+                    else {
+                         console.log("error");
+                    }
+               }
+          }
+          xhr.send();*/
+}
+FillInTheTable();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddNewOrderAdditionalToDB">AddNewOrderAdditionalToDB</a></li><li><a href="global.html#AddNewOrderToDB">AddNewOrderToDB</a></li><li><a href="global.html#AddNew%25D0%25A1lientToDB">AddNewСlientToDB</a></li><li><a href="global.html#CloseConnectionToDB">CloseConnectionToDB</a></li><li><a href="global.html#ConnectToDB">ConnectToDB</a></li><li><a href="global.html#CreateElement">CreateElement</a></li><li><a href="global.html#FillInCarsStatisticsTable">FillInCarsStatisticsTable</a></li><li><a href="global.html#FillInClientsStatisticsTable">FillInClientsStatisticsTable</a></li><li><a href="global.html#FillInEmployeesTable">FillInEmployeesTable</a></li><li><a href="global.html#FillInTables">FillInTables</a></li><li><a href="global.html#FillInTheTable">FillInTheTable</a></li><li><a href="global.html#OnChangeDates">OnChangeDates</a></li><li><a href="global.html#PeriodChanged">PeriodChanged</a></li><li><a href="global.html#addCar">addCar</a></li><li><a href="global.html#addOptions">addOptions</a></li><li><a href="global.html#buttonCheckoutCloseOnClick">buttonCheckoutCloseOnClick</a></li><li><a href="global.html#buttonCheckoutOnClick">buttonCheckoutOnClick</a></li><li><a href="global.html#buttonCheckoutSubmitOnClickAndWriteOrderToDB">buttonCheckoutSubmitOnClickAndWriteOrderToDB</a></li><li><a href="global.html#calculateThePrice">calculateThePrice</a></li><li><a href="global.html#cartIsEmpty">cartIsEmpty</a></li><li><a href="global.html#changeRenderCart">changeRenderCart</a></li><li><a href="global.html#changeTotalPrice">changeTotalPrice</a></li><li><a href="global.html#clearData">clearData</a></li><li><a href="global.html#deleteFunction">deleteFunction</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getEmployeeIdFromDB">getEmployeeIdFromDB</a></li><li><a href="global.html#get%25D0%25A1lientIdFromDB">getСlientIdFromDB</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#minusFunction">minusFunction</a></li><li><a href="global.html#plusFunction">plusFunction</a></li><li><a href="global.html#renderCart">renderCart</a></li><li><a href="global.html#saveData">saveData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 11:35:54 GMT+0200 (Восточная Европа, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
