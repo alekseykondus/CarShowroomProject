@@ -323,7 +323,7 @@ const renderCart = () => {
           CreateElement("div", "img", "Фото", "cart-header").classList.add("col-3", "text-center");
           CreateElement("div", "name", "Назва машини", "cart-header").classList.add("col-3", "text-center");
           CreateElement("div", "equipment", "Комплектація", "cart-header").classList.add("col-3", "text-center");
-          CreateElement("div", "price", "Ціна", "cart-header").classList.add("col-2", "text-center");
+          CreateElement("div", "price", "Ціна", "cart-header").classList.add("col-1", "text-center");
 
           CreateElement("div", "cart-body", "", "cart-div").classList.add("row", "w-100", "ml-0");
           console.log("cart", cart);
@@ -338,11 +338,12 @@ const renderCart = () => {
                     CreateElement("option", "option1", "Повна (стандарт)", "carEquipment-select" + element);
                     CreateElement("option", "option2", "Повна на магнітній підвісці", "carEquipment-select" + element);
                     CreateElement("option", "option3", "Повна з автопілотом", "carEquipment-select" + element);
-                    //CreateElement("div", "carCount" + element, "", "car" + element).classList.add("col-3", "text-center", "m-auto");
-                    //CreateElement("button", element, "-", "carCount" + element).classList.add("btn", "btn-secondary", "d-inline", "minus");
+                    CreateElement("div", "carPrice" + element, cart[element]["price"].toLocaleString() + " $", "car" + element).classList.add("col-1", "text-center", "m-auto");
+                    CreateElement("div", "carCount" + element, "", "car" + element).classList.add("col-1", "text-center", "m-auto");
+                    CreateElement("button", element, "🗑️", "carCount" + element).classList.add("btn", "btn-secondary", "d-inline", "minus");
                     // CreateElement("div", "carCountNumber" + element, cart[element]["count"], "carCount" + element).classList.add("d-inline", "mx-2");
                     //CreateElement("button", element, "+", "carCount" + element).classList.add("btn", "btn-secondary", "d-inline", "plus");
-                    CreateElement("div", "carPrice" + element, cart[element]["price"].toLocaleString() + " $", "car" + element).classList.add("col-2", "text-center", "m-auto");
+
                }
           }
           CreateElement("div", "totalPrice", "Загальна ціна: " + price.toLocaleString() + " $", "cart-div").classList.add("row", "ml-0", "h3", "mt-3", "mx-auto");
